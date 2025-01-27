@@ -85,8 +85,13 @@
           <li class="sidebar-list-item" routerLink="/profile">
             <span class="material-icons"> person </span>Profile
           </li>
-          <li class="sidebar-list-item" style="margin-top: 300px">
-            <span class="material-icons"> logout </span> Logout
+          <li
+            class="sidebar-list-item"
+            (click)="onLogout()"
+            style="margin-top: 300px"
+          >
+            <span class="material-icons"> logout </span>
+            Logout
           </li>
         </ul>
       </aside>
