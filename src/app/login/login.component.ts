@@ -34,6 +34,7 @@ export class LoginComponent {
       localStorage.setItem('doctask', JSON.stringify(localArray));
     }
     alert('Registration Successful');
+    this.router.navigateByUrl('/login');
   }
 
   router = inject(Router);
