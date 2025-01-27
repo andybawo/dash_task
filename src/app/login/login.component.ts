@@ -49,7 +49,7 @@ export class LoginComponent {
           m.password == this.loginObj.password
       );
       if (isUserFound != undefined) {
-        this.router.navigateByUrl('dashboard');
+        this.router.navigateByUrl('/dashboard');
       } else {
         alert('Email or Password not found');
       }
