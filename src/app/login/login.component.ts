@@ -1,14 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink, RouterOutlet],
+  imports: [FormsModule, RouterLink, RouterOutlet, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  router = inject(Router);
+
   isLoginView: boolean = true;
 
   userRegisterObj: any = {
@@ -34,10 +42,8 @@ export class LoginComponent {
       localStorage.setItem('doctask', JSON.stringify(localArray));
     }
     alert('Registration Successful');
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/');
   }
-
-  router = inject(Router);
 
   onLogin() {
     const isLocalData = localStorage.getItem('doctask');

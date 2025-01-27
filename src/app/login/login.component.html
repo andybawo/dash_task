@@ -30,98 +30,100 @@
           />
         </div>
 
-        @if(isLoginView) {
-        <div class="main-card-login">
-          <div class="card-login">
-            <div class="card-inner-login">
-              <img
-                src="/images/active-directory-logo.svg"
-                alt=""
-                class="window-logo"
-              />
-            </div>
-            <div class="login-form">
-              <h2>Login to active directory</h2>
-              <label for="email">Email</label>
-              <input
-                class="login-field"
-                type="email"
-                [(ngModel)]="loginObj.emailId"
-                name="emailId"
-                placeholder="Email Address"
-                id="email"
-              />
-              <label for="password">Password</label>
-              <input
-                class="login-field"
-                type="password"
-                [(ngModel)]="loginObj.password"
-                name="password"
-                placeholder="Password"
-                id="password"
-              />
-              <button class="login-btn" type="button" (click)="onLogin()">
-                LOG IN
-              </button>
-              <h6>
-                <a routerLink="/reset-password" style="color: #5cdcb9">
-                  Forgot Password?
-                </a>
-                <a
-                  class="register"
-                  style="position: relative; left: 60px; color: #5cdcb9"
-                  (click)="isLoginView = false"
-                  >Register</a
-                >
-              </h6>
-            </div>
-          </div>
-        </div>
-        }@else{
-        <div class="main-card-login">
-          <div class="card-login">
-            <div class="card-inner-login">
-              <img
-                src="/images/active-directory-logo.svg"
-                alt=""
-                class="window-logo"
-              />
-            </div>
-            <div class="login-form">
-              <h2>Login to active directory</h2>
-              <label for="email">Email</label>
-              <input
-                class="login-field"
-                type="email"
-                [(ngModel)]="userRegisterObj.emailId"
-                name="emailId"
-                placeholder="Email Address"
-                id="email"
-              />
-              <label for="password">Password</label>
-              <input
-                class="login-field"
-                type="password"
-                [(ngModel)]="userRegisterObj.password"
-                name="password"
-                placeholder="Password"
-                id="password"
-              />
-              <button class="login-btn" type="button" (click)="onRegister()">
-                Register
-              </button>
-              <h6>
-                <a
-                  class="register"
-                  style="position: relative; left: 60px; color: #5cdcb9"
-                  (click)="isLoginView = true"
-                  >Log in here</a
-                >
-              </h6>
+        <div *ngIf="isLoginView">
+          <div class="main-card-login">
+            <div class="card-login">
+              <div class="card-inner-login">
+                <img
+                  src="/images/active-directory-logo.svg"
+                  alt=""
+                  class="window-logo"
+                />
+              </div>
+              <div class="login-form">
+                <h2>Login to active directory</h2>
+                <label for="email">Email</label>
+                <input
+                  class="login-field"
+                  type="email"
+                  [(ngModel)]="loginObj.emailId"
+                  name="emailId"
+                  placeholder="Email Address"
+                  id="email"
+                />
+                <label for="password">Password</label>
+                <input
+                  class="login-field"
+                  type="password"
+                  [(ngModel)]="loginObj.password"
+                  name="password"
+                  placeholder="Password"
+                  id="password"
+                />
+                <button class="login-btn" type="button" (click)="onLogin()">
+                  LOG IN
+                </button>
+                <h6>
+                  <a routerLink="/reset-password" style="color: #5cdcb9">
+                    Forgot Password?
+                  </a>
+                  <a
+                    class="register"
+                    style="position: relative; left: 60px; color: #5cdcb9"
+                    (click)="isLoginView = false"
+                    >Register</a
+                  >
+                </h6>
+              </div>
             </div>
           </div>
         </div>
-        }
+
+        <div *ngIf="!isLoginView">
+          <div class="main-card-login">
+            <div class="card-login">
+              <div class="card-inner-login">
+                <img
+                  src="/images/active-directory-logo.svg"
+                  alt=""
+                  class="window-logo"
+                />
+              </div>
+              <div class="login-form">
+                <h2>Login to active directory</h2>
+                <label for="email">Email</label>
+                <input
+                  class="login-field"
+                  type="email"
+                  [(ngModel)]="userRegisterObj.emailId"
+                  name="emailId"
+                  placeholder="Email Address"
+                  id="email"
+                />
+                <label for="password">Password</label>
+                <input
+                  class="login-field"
+                  type="password"
+                  [(ngModel)]="userRegisterObj.password"
+                  name="password"
+                  placeholder="Password"
+                  id="password"
+                />
+                <button class="login-btn" type="button" (click)="onRegister()">
+                  Register
+                </button>
+                <h6>
+                  <a
+                    class="register"
+                    style="position: relative; left: 60px; color: #5cdcb9"
+                    (click)="isLoginView = true"
+                    >Log in here</a
+                  >
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
     </div>
     <router-outlet></router-outlet>
