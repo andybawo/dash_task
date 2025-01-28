@@ -128,8 +128,9 @@
                   font-size: 20px;
                   color: black;
                 "
+                *ngIf="loggedInUser"
               >
-                Adekunle Adeniyi
+                {{ loggedInUser.fName }} {{ loggedInUser.lName }}
               </h2>
               <h6
                 style="

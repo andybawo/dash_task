@@ -1,20 +1,39 @@
-import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
+
+import { User } from '../model/class/user';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent {
-  router = inject(Router);
+export class DashboardComponent implements OnInit {
+  userList: User[] = [];
+  user: any;
+  loginObj: Partial<User> = { email: '', password: '' };
+  loggedInUser: User | null = null; // Store the currently logged-in user
 
-  loginObj: any = {
-    emailId: '',
-    password: '',
-  };
+  ngOnInit(): void {
+    const localData = localStorage.getItem('doctask');
+    if (localData != null) {
+      this.userList = JSON.parse(localData);
+    }
+    // Fetch the userId of the logged-in user
+    const currentUserId = localStorage.getItem('currentUserId');
+    if (currentUserId != null) {
+      // Find the logged-in user by userId
+      this.loggedInUser =
+        this.userList.find(
+          (user) => user.userId == JSON.parse(currentUserId)
+        ) || null;
+    }
+  }
+
+  router = inject(Router);
 
   onLogout() {
     // Clear the login data if it's stored anywhere (e.g., session or local storage)
@@ -22,7 +41,7 @@ export class DashboardComponent {
 
     // Clear login form data (optional, if you want to reset it on logout)
     this.loginObj = {
-      username: '',
+      email: '',
       password: '',
     };
 

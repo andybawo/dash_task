@@ -46,7 +46,7 @@
                 <input
                   class="login-field"
                   type="email"
-                  [(ngModel)]="loginObj.emailId"
+                  [(ngModel)]="loginObj.email"
                   name="emailId"
                   placeholder="Email Address"
                   id="email"
@@ -64,12 +64,20 @@
                   LOG IN
                 </button>
                 <h6>
-                  <a routerLink="/reset-password" style="color: #5cdcb9">
+                  <a
+                    routerLink="/reset-password"
+                    style="color: #5cdcb9; font-size: 15px"
+                  >
                     Forgot Password?
                   </a>
                   <a
                     class="register"
-                    style="position: relative; left: 60px; color: #5cdcb9"
+                    style="
+                      position: relative;
+                      left: 60px;
+                      color: #5cdcb9;
+                      font-size: 15px;
+                    "
                     (click)="isLoginView = false"
                     >Register</a
                   >
@@ -90,13 +98,44 @@
                 />
               </div>
               <div class="login-form">
-                <h2>Login to active directory</h2>
+                <h2>Register</h2>
+
+                <label for="fName">First Name</label>
+                <input
+                  class="login-field"
+                  type="text"
+                  [(ngModel)]="userRegisterObj.fName"
+                  name="fName"
+                  placeholder="First Name"
+                  id="email"
+                />
+
+                <label for="lName">Last Name</label>
+                <input
+                  class="login-field"
+                  type="text"
+                  [(ngModel)]="userRegisterObj.lName"
+                  name="lName"
+                  placeholder="Last Name"
+                  id="email"
+                />
+
+                <label for="phoneNumber">Phone Number</label>
+                <input
+                  class="login-field"
+                  type="number"
+                  [(ngModel)]="userRegisterObj.phoneNumber"
+                  name="phoneNumber"
+                  placeholder="Phone Number"
+                  id="email"
+                />
+
                 <label for="email">Email</label>
                 <input
                   class="login-field"
                   type="email"
-                  [(ngModel)]="userRegisterObj.emailId"
-                  name="emailId"
+                  [(ngModel)]="userRegisterObj.email"
+                  name="email"
                   placeholder="Email Address"
                   id="email"
                 />
@@ -115,9 +154,14 @@
                 <h6>
                   <a
                     class="register"
-                    style="position: relative; left: 60px; color: #5cdcb9"
+                    style="
+                      position: relative;
+                      left: 60px;
+                      color: #5cdcb9;
+                      font-size: 15px;
+                    "
                     (click)="isLoginView = true"
-                    >Log in here</a
+                    >Already have an account? Log in here</a
                   >
                 </h6>
               </div>

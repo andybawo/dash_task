@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../model/class/user';
 
 @Component({
   selector: 'app-reset-password',
@@ -22,7 +23,7 @@ export class ResetPasswordComponent {
       const users = JSON.parse(isLocalData);
 
       const isUserFound = users.find(
-        (user: any) => user.emailId === this.emailVerify
+        (user: any) => user.email === this.emailVerify
       );
       if (isUserFound) {
         this.isEmailVerified = false;
@@ -39,7 +40,7 @@ export class ResetPasswordComponent {
       const users = JSON.parse(isLocalData);
 
       const userIndex = users.findIndex(
-        (user: any) => user.emailId === this.emailVerify
+        (user: any) => user.email === this.emailVerify
       );
       if (userIndex !== -1) {
         users[userIndex].password = this.newPassword;

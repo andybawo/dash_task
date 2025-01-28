@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {
   Router,
@@ -8,58 +8,60 @@ import {
   RouterOutlet,
 } from '@angular/router';
 
+import { User } from '../model/class/user';
 @Component({
   selector: 'app-login',
   imports: [FormsModule, RouterLink, RouterOutlet, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
-  router = inject(Router);
-
+export class LoginComponent implements OnInit {
   isLoginView: boolean = true;
 
-  userRegisterObj: any = {
-    emailId: '',
-    password: '',
-  };
+  userRegisterObj: User = new User();
+  loginObj: Partial<User> = { email: '', password: '' };
+  loggedInUser: User | null = null; // Store the currently logged-in user
 
-  loginObj: any = {
-    emailId: '',
-    password: '',
-  };
+  userList: User[] = [];
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    const localData = localStorage.getItem('doctask');
+    if (localData != null) {
+      this.userList = JSON.parse(localData);
+    }
+    const currentUserId = localStorage.getItem('currentUserId');
+    if (currentUserId != null) {
+      // Find the logged-in user by userId
+      this.loggedInUser =
+        this.userList.find(
+          (user) => user.userId == JSON.parse(currentUserId)
+        ) || null;
+    }
+  }
 
   onRegister() {
     debugger;
-    const isLocalData = localStorage.getItem('doctask');
-    if (isLocalData != null) {
-      const localArray = JSON.parse(isLocalData);
-      localArray.push(this.userRegisterObj);
-      localStorage.setItem('doctask', JSON.stringify(localArray));
-    } else {
-      const localArray = [];
-      localArray.push(this.userRegisterObj);
-      localStorage.setItem('doctask', JSON.stringify(localArray));
-    }
-    alert('Registration Successful');
-    this.router.navigateByUrl('/');
+    this.userRegisterObj.userId = this.userList.length + 1;
+    this.userList.push(this.userRegisterObj);
+    localStorage.setItem('doctask', JSON.stringify(this.userList));
+    alert('User Successfully Registered');
+    this.router.navigateByUrl('login');
   }
 
   onLogin() {
-    const isLocalData = localStorage.getItem('doctask');
-    if (isLocalData != null) {
-      const users = JSON.parse(isLocalData);
-
-      const isUserFound = users.find(
-        (m: any) =>
-          m.emailId == this.loginObj.emailId &&
-          m.password == this.loginObj.password
-      );
-      if (isUserFound != undefined) {
-        this.router.navigateByUrl('/dashboard');
-      } else {
-        alert('Email or Password not found');
-      }
+    const isUserFound = this.userList.find(
+      (user) =>
+        user.email == this.loginObj.email &&
+        user.password == this.loginObj.password
+    );
+    if (isUserFound) {
+      localStorage.setItem('currentUserId', JSON.stringify(isUserFound.userId));
+      alert('Login Successful');
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      alert('Incorrect Passwor or Email');
     }
   }
 
