@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   loginObj: Partial<User> = { email: '', password: '' };
   loggedInUser: User | null = null; // Store the currently logged-in user
 
+  sidebarOpen = false;
+
   ngOnInit(): void {
     const localData = localStorage.getItem('doctask');
     if (localData != null) {
@@ -47,5 +49,9 @@ export class DashboardComponent implements OnInit {
 
     // Redirect the user to the login page (or any other page)
     this.router.navigateByUrl('/login'); // assuming '/login' is the login page
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
   }
 }

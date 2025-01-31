@@ -22,8 +22,8 @@
       <!-- header -->
 
       <header class="header">
-        <div class="menu-icon" onclick="openSidebar()">
-          <span class="material-symbols-outlined"> menu </span>
+        <div class="menu-icon" (click)="toggleSidebar()">
+          <span class="material-icons"> menu </span>
         </div>
         <div class="header-left">
           <img src="/images/ds-logo-new.svg" style="height: 25px" />
@@ -60,16 +60,14 @@
       </header>
 
       <!-- sidebar -->
-      <aside id="sidebar">
+      <aside id="sidebar" [class.sidebar-responsive]="sidebarOpen" id="sidebar">
         <div class="sidebar-title">
           <div class="sidebar-brand">
             <span class="material-icons" style="font-size: 60px">
               drag_handle
             </span>
           </div>
-          <!-- <span class="material-icons-outlined" onclick="closeSidebar()">
-            close
-          </span> -->
+          <span class="material-icons" (click)="toggleSidebar()"> close </span>
         </div>
         <ul class="sidebar-list">
           <li class="sidebar-list-item" routerLink="/dashboard">
@@ -149,7 +147,7 @@
           </div>
           <hr />
 
-          <span class="span2">
+          <div class="span2">
             <div class="input-group">
               <label for="">First Name</label>
               <input class="profile-input" type="text" />
@@ -158,9 +156,9 @@
               <label for="">Middle Name</label>
               <input class="profile-input" type="text" />
             </div>
-          </span>
+          </div>
 
-          <span class="span2">
+          <div class="span2">
             <div class="input-group">
               <label for="">Last Name</label>
               <input class="profile-input" type="text" />
@@ -169,9 +167,9 @@
               <label for="">Phone Numbere</label>
               <input class="profile-input" type="text" />
             </div>
-          </span>
+          </div>
 
-          <span class="span2">
+          <div class="span2">
             <div class="input-group">
               <label for="">Alternative Phone Number</label>
               <input class="profile-input" type="text" />
@@ -180,7 +178,7 @@
               <label for="">Personal Email</label>
               <input class="profile-input" type="text" />
             </div>
-          </span>
+          </div>
           <label
             for=""
             style="
