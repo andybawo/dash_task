@@ -1,17 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
-
 import { User } from '../model/class/user';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  selector: 'app-layout',
+  imports: [RouterOutlet, RouterLink, CommonModule],
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.css',
 })
-export class DashboardComponent implements OnInit {
+export class LayoutComponent {
   userList: User[] = [];
   user: any;
   loginObj: Partial<User> = { email: '', password: '' };

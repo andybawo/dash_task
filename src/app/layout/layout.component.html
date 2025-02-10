@@ -1,0 +1,87 @@
+<div class="grid-container">
+  <!-- header -->
+
+  <div
+    class="sidebar-overlay"
+    *ngIf="sidebarOpen"
+    (click)="toggleSidebar()"
+  ></div>
+
+  <header class="header">
+    <div class="menu-icon" (click)="toggleSidebar()">
+      <span class="material-icons"> menu </span>
+    </div>
+    <div class="header-left">
+      <img src="/images/ds-logo-new.svg" style="height: 25px" />
+    </div>
+    <div class="header-right">
+      <span class="material-icons"> notifications</span
+      ><span
+        style="
+          background-color: red;
+          border-radius: 100%;
+          color: white;
+          font-size: 8px;
+          padding: 3px;
+          position: relative;
+          top: -12px;
+          left: -10px;
+        "
+        >10+</span
+      >
+      <span
+        style="
+          background-color: rgb(230, 188, 56);
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+          color: white;
+          font-size: 20px;
+          padding: 10px;
+          justify-content: center;
+        "
+        >AA</span
+      >
+    </div>
+  </header>
+
+  <!-- sidebar -->
+  <aside id="sidebar" [class.sidebar-responsive]="sidebarOpen" id="sidebar">
+    <div class="sidebar-title">
+      <div class="sidebar-brand">
+        <span class="material-icons" style="font-size: 60px">
+          drag_handle
+        </span>
+      </div>
+      <span class="material-icons" (click)="toggleSidebar()"> close </span>
+    </div>
+    <ul class="sidebar-list">
+      <li class="sidebar-list-item" routerLink="/dashboard">
+        <span class="material-icons"> grid_view </span
+        ><span class="list-text">Dashboard</span>
+      </li>
+      <li class="sidebar-list-item">
+        <span class="material-icons"> folder </span>File Manager
+      </li>
+      <li class="sidebar-list-item">
+        <span class="material-icons"> web_stories </span>Application
+      </li>
+      <li class="sidebar-list-item" routerLink="/profile">
+        <span class="material-icons"> person </span>Profile
+      </li>
+      <li
+        class="sidebar-list-item"
+        (click)="onLogout()"
+        style="margin-top: 300px"
+      >
+        <span class="material-icons"> logout </span>
+        Logout
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="main-container">
+    <router-outlet></router-outlet>
+  </main>
+</div>
